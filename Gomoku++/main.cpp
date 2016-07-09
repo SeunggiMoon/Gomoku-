@@ -60,14 +60,14 @@ void AI()
 					if (i - checkpos[k][0] >= 0 && j - checkpos[k][1] >= 0 && i - checkpos[k][0] <= MAX && j - checkpos[k][1] <= MAX)
 					{
 						if (pos[i - checkpos[k][0]][j - checkpos[k][1]].state == 0 &&
-							pos[tx + checkpos[k][0]][ty + checkpos[k][1]].state == 0) pos[i - checkpos[k][0]][j - checkpos[k][1]].weight *= pow(2.0, cnt * cnt);
-						else pos[i - checkpos[k][0]][j - checkpos[k][1]].weight *= pow(1.7, cnt * cnt);
+							pos[tx + checkpos[k][0]][ty + checkpos[k][1]].state == 0) pos[i - checkpos[k][0]][j - checkpos[k][1]].weight *= pow(2.1, cnt * cnt);
+						else pos[i - checkpos[k][0]][j - checkpos[k][1]].weight *= pow(1.8, cnt * cnt);
 					}
 					if (tx + checkpos[k][0] >= 0 && ty + checkpos[k][1] >= 0 && tx + checkpos[k][0] <= MAX && ty + checkpos[k][1] <= MAX)
 					{
 						if (pos[i - checkpos[k][0]][j - checkpos[k][1]].state == 0 &&
-							pos[tx + checkpos[k][0]][ty + checkpos[k][1]].state == 0) pos[tx][ty].weight *= pow(2.0, cnt * cnt);
-						else pos[tx][ty].weight *= pow(1.7, cnt * cnt);
+							pos[tx + checkpos[k][0]][ty + checkpos[k][1]].state == 0) pos[tx][ty].weight *= pow(2.1, cnt * cnt);
+						else pos[tx][ty].weight *= pow(1.8, cnt * cnt);
 					}
 				}
 
@@ -76,7 +76,7 @@ void AI()
 					for (int l = 0; l < 8; l++)
 					{
 						if (i + checkpos[l][0] >= 0 && j + checkpos[l][1] >= 0 && i + checkpos[l][0] <= MAX && j + checkpos[l][1] <= MAX)
-							pos[i + checkpos[l][0]][j + checkpos[l][1]].weight *= 1.05;
+							pos[i + checkpos[l][0]][j + checkpos[l][1]].weight *= 1.08;
 					}
 
 					int cnt = 0;
@@ -92,9 +92,9 @@ void AI()
 					if (cnt > 1)
 					{
 						if (i - checkpos[k][0] >= 0 && j - checkpos[k][1] >= 0 && i - checkpos[k][0] <= MAX && j - checkpos[k][1] <= MAX)
-							pos[i - checkpos[k][0]][j - checkpos[k][1]].weight *= pow(1.4, cnt * cnt);
+							pos[i - checkpos[k][0]][j - checkpos[k][1]].weight *= pow(1.2, cnt * cnt * 2);
 						if (tx + checkpos[k][0] >= 0 && ty + checkpos[k][1] >= 0 && tx + checkpos[k][0] <= MAX && ty + checkpos[k][1] <= MAX)
-							pos[tx][ty].weight *= pow(1.4, cnt * cnt);
+							pos[tx][ty].weight *= pow(1.2, cnt * cnt * 2);
 					}
 				}
 			}
@@ -113,10 +113,11 @@ int main(void)
 	int x, y, ex, ey, tx, ty, cnt, putcnt;
 	bool put, p1win, p2win;
 	double max_weight;
+	char playerName[512] = "";
 
-	printf("\n Gomoku++ v1.1\n\n ⓒ 2016 Naissoft all rights reserved.\n\n 조작키 : w, s, a, d, 돌 놓기 Space\n");
-	printf("\n 시작하려면 Enter를 누르세요.");
-	getchar();
+	printf("\n Gomoku++ v1.2\n\n ⓒ 2016 Naissoft all rights reserved.\n\n 조작키 : w, s, a, d, 돌 놓기 Space\n");
+	printf("\n 시작하려면 플레이어 이름을 입력하시고 Enter를 누르세요.");
+	scanf(" %s", playerName);
 
 	while (1)
 	{
@@ -281,7 +282,7 @@ int main(void)
 		}
 		Sleep(1000);
 		gotoxy(1, 20);
-		printf(" %s가 우승했습니다!", (p1win > p2win) ? "플레이어" : "AI");
+		printf(" %s이(가) %d수 만에 우승했습니다!", (p1win > p2win) ? playerName : "AI", putcnt);
 		printf("\n\n 다시 하시겠습니까? Y / N, 리플레이 : R");
 
 		char ch;
