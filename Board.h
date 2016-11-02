@@ -14,7 +14,7 @@ public:
 
 struct space
 {
-	int state;
+	int state; 
 	double weight;
 	bool ifOccupied;
 };

@@ -18,7 +18,7 @@ public:
 		GENMOVE,
 		COUNT_COMMANDS
 	};
- 
+  
 private:
 	bool is_Run;
 	int cmd_id;
