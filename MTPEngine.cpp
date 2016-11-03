@@ -77,7 +77,7 @@ void MTPEngine::_parse(const std::string& line)
 		break;
 
 	case CommandType::CLEAR_BOARD:
-
+		ClearBoard();
 		break;
 
 	case CommandType::PLAY:
@@ -117,6 +117,11 @@ void MTPEngine::_play(const std::vector<std::string>& args, std::string& respons
 			response.append("invalid color or coordinate");
 		}
 	}
+	else if (args.size() == 2)
+	{
+		response[0] = '?';
+		response.append("game over");
+	}
 	else
 	{
 		response[0] = '?';
@@ -136,6 +141,8 @@ void MTPEngine::_genmove(std::string& response)
 	response.append((color == 1) ? "b " : "w ");
 	response += pos_list[pt.X];
 	response.append(std::to_string(pt.Y));
+	if (ai->CheckWinner() == 1) response.append(" b");
+	if (ai->CheckWinner() == 2) response.append(" w");
 }
 
 MTPEngine::CommandType MTPEngine::_parse_command(const std::string& cmd)
@@ -173,4 +180,9 @@ Point MTPEngine::_parse_coordinate(const std::string & coord)
 
 	return Point((int)pos_list.find(str[0]),
 		(int)14 - atoi(std::string(str.begin() + 1, str.end()).c_str()));
+}
+
+void MTPEngine::ClearBoard()
+{
+	ai->board->Clear();
 }

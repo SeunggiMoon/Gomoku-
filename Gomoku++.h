@@ -11,8 +11,9 @@ public:
 	Point GetMove();
 	void Move(Point pt, int color);
 	void Process();
-
-private:
+	int CheckWinner();
 	Board* board;
+private:
+
 };
   

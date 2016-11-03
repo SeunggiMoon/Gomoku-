@@ -132,3 +132,57 @@ void Gomokupp::Process()
 
 	board->pos[board->ex][board->ey].state = 2;
 }
+
+int Gomokupp::CheckWinner()
+{
+	int cnt, tx, ty;
+
+	for (int i = 0; i < 15; i++)
+	{
+		for (int j = 0; j < 15; j++)
+		{
+			if (board->pos[i][j].state == 1)
+			{
+				for (int k = 0; k < 8; k++)
+				{
+					cnt = 0;
+					tx = i, ty = j;
+					while (board->pos[tx][ty].state == 1 &&
+						tx >= 0 && ty >= 0 && tx < 15 && ty < 15)
+					{
+						cnt++;
+						tx += checkpos[k][0];
+						ty += checkpos[k][1];
+					}
+					if (cnt == 5) return 1;
+					else cnt = 0;
+				}
+			}
+		}
+	}
+
+	for (int i = 0; i < 15; i++)
+	{
+		for (int j = 0; j < 15; j++)
+		{
+			if (board->pos[i][j].state == 2)
+			{
+				for (int k = 0; k < 8; k++)
+				{
+					cnt = 0;
+					tx = i, ty = j;
+					while (board->pos[tx][ty].state == 2 &&
+						tx >= 0 && ty >= 0 && tx < 15 && ty < 15)
+					{
+						cnt++;
+						tx += checkpos[k][0];
+						ty += checkpos[k][1];
+					}
+					if (cnt == 5) return 2;
+					else cnt = 0;
+				}
+			}
+		}
+	}
+	return 0;
+}

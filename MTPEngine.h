@@ -42,4 +42,5 @@ private:
 	CommandType _parse_command(const std::string& cmd);
 	int _parse_color(const std::string& color);
 	Point _parse_coordinate(const std::string& color);
+	void ClearBoard();
 };

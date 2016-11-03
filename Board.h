@@ -26,4 +26,5 @@ public:
 	int ex = 7;
 	int ey = 7;
 	void DoMove(Point, int);
+	void Clear();
 };
