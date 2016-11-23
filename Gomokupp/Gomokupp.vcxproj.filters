@@ -14,4 +14,29 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Board.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Process.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="AI.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Board.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Process.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="AI.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>
