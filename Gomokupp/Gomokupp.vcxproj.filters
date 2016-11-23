@@ -29,14 +29,14 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AI.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
     <ClInclude Include="Board.h">
-      <Filter>소스 파일</Filter>
+      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Process.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="AI.h">
-      <Filter>소스 파일</Filter>
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
