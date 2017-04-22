@@ -10,6 +10,11 @@ void gotoxy(int x, int y)
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
 
+void setColor(int color)
+{
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+}
+
 int main(void)
 {
 	while (true)
@@ -19,12 +24,17 @@ int main(void)
 
 		int x, y, putcnt;
 		bool put;
+		bool helpMode = false;
 		char playerName[512] = "";
 
-		system("cls");
+		Point helpPos;
+		Point prevHelpPos = std::make_pair(0, 0);
 
-		printf("\n Gomoku++ v3.0\n\n ⓒ 2016 Naissoft. All rights reserved.\n\n 조작키 : w, s, a, d, 돌 놓기 Space\n");
-		printf("\n 시작하려면 플레이어 이름을 입력하시고 Enter를 누르세요.");
+		system("cls");
+		setColor(7);
+
+		printf("\n Gomoku++ v3.1\n\n ⓒ 2016~2017 Naissoft. All rights reserved.\n\n 조작키 : w, s, a, d, 돌 놓기 : Space, Assistance Mode : H\n");
+		printf("\n 시작하려면 플레이어 이름을 입력하시고 Enter를 누르세요.\n");
 		scanf(" %s", playerName);
 
 		system("cls");
@@ -40,7 +50,7 @@ int main(void)
 
 		while (true)
 		{
-			gotoxy(1, 20); printf("Your turn");
+			gotoxy(1, 20); printf("%s's turn", playerName);
 			gotoxy(x * 2, y);
 
 			put = false;
@@ -75,9 +85,30 @@ int main(void)
 						put = true;
 					}
 					break;
+				case 'h':
+				case 'H':
+					(helpMode) ? helpMode = false : helpMode = true;
+					break;
 				}
 				gotoxy(1, 21); printf(" Weight : %f                                   ", board.pos[x][y].weight);
 				gotoxy(x * 2, y);
+
+				if (helpMode)
+				{
+					if (board.pos[prevHelpPos.first][prevHelpPos.second].state == BLANK)
+					{
+						gotoxy(prevHelpPos.first * 2, prevHelpPos.second);
+						printf("┼");
+					}
+					helpPos = getMaxWeightPos(&board);
+					gotoxy(helpPos.first * 2, helpPos.second);
+					setColor(4);
+					printf("┼");
+					setColor(7);
+
+					prevHelpPos = helpPos;
+					gotoxy(x * 2, y);
+				}
 			}
 
 			put = false;
@@ -85,7 +116,7 @@ int main(void)
 			if (getWinner(board) == BLACK) break;
 			Sleep(500);
 
-			gotoxy(1, 20); printf("AI's turn");
+			gotoxy(1, 20); printf("AI's turn                                    ");
 				
 			for (int i = 0; i < MAX; i++)
 				for (int j = 0; j < MAX; j++)

@@ -89,6 +89,23 @@ void setWeight(Board *board)
 	}
 }
 
+Point getMaxWeightPos(Board *board)
+{
+	double weight = 0.0;
+	int x, y;
+
+	for (int i = 0; i < MAX; i++)
+		for (int j = 0; j < MAX; j++)
+		{
+			if (board->pos[i][j].weight >= weight && board->pos[i][j].state == BLANK)
+			{
+				x = i, y = j;
+				weight = board->pos[i][j].weight;
+			}
+		}
+	return std::make_pair(x, y);
+}
+
 void doPut(State state, Board *board, Point pt)
 {
 	board->Put(state, pt.first, pt.second);
