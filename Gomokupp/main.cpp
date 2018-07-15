@@ -33,7 +33,7 @@ int main(void)
 		system("cls");
 		setColor(7);
 
-		printf("\n Gomoku++ v3.1\n\n ⓒ 2016~2017 Naissoft. All rights reserved.\n\n 조작키 : w, s, a, d, 돌 놓기 : Space, Assistance Mode : H\n");
+		printf("\n Gomoku++ v3.2\n\n ⓒ 2016~2018 Naissoft. All rights reserved.\n\n 조작키 : w, s, a, d, 돌 놓기 : Space, Assistance Mode : H\n");
 		printf("\n 시작하려면 플레이어 이름을 입력하시고 Enter를 누르세요.\n");
 		scanf(" %s", playerName);
 
@@ -63,7 +63,7 @@ int main(void)
 					gotoxy(x * 2, y);
 					break;
 				case 's':
-					if (y < MAX) y++;
+					if (y < MAX - 1) y++;
 					gotoxy(x * 2, y);
 					break;
 				case 'a':
@@ -71,7 +71,7 @@ int main(void)
 					gotoxy(x * 2, y);
 					break;
 				case 'd':
-					if (x < MAX) x++;
+					if (x < MAX - 1) x++;
 					gotoxy(x * 2, y);
 					break;
 				case ' ':
