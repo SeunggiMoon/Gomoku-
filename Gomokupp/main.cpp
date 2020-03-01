@@ -1,19 +1,8 @@
 
 #include "AI.h"
-#include <iostream>
-#include <Windows.h>
+#include "Lib.h"
+#include <stdio.h>
 #include <conio.h>
-
-void gotoxy(int x, int y)
-{
-	COORD pos = { x, y };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-}
-
-void setColor(int color)
-{
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
-}
 
 int main(void)
 {
@@ -33,8 +22,8 @@ int main(void)
 		system("cls");
 		setColor(7);
 
-		printf("\n Gomoku++ v3.2\n\n ⓒ 2016~2018 Naissoft. All rights reserved.\n\n 조작키 : w, s, a, d, 돌 놓기 : Space, Assistance Mode : H\n");
-		printf("\n 시작하려면 플레이어 이름을 입력하시고 Enter를 누르세요.\n");
+		printf("\n Gomoku++ v3.2\n\n ⓒ 2016~2020 Naissoft. All rights reserved.\n\n 조작키 : w, s, a, d, 돌 놓기 : Space, Assistance Mode : H\n");
+		printf("\n 시작하려면 플레이어 이름을 입력하시고 Enter를 누르세요.\n\n ");
 		scanf(" %s", playerName);
 
 		system("cls");
@@ -116,7 +105,7 @@ int main(void)
 			if (getWinner(board) == BLACK) break;
 			Sleep(500);
 
-			gotoxy(1, 20); printf("AI's turn                                    ");
+			gotoxy(1, 20); printf("AI's turn \t\t\t\t");
 				
 			for (int i = 0; i < MAX; i++)
 				for (int j = 0; j < MAX; j++)
@@ -147,7 +136,7 @@ int main(void)
 		Sleep(500);
 		gotoxy(1, 20);
 		printf(" %s이(가) %d수 만에 우승했습니다!", (getWinner(board) == BLACK) ? playerName : "AI", putcnt);
-		printf("\n\n 다시 하시겠습니까? Y / N, 리플레이 : R");
+		printf("\n\n 다시 하시겠습니까? (Y / N), 리플레이 : R, 기보 저장 : S");
 
 		char ch;
 		scanf(" %c", &ch);
@@ -171,6 +160,9 @@ int main(void)
 					printf("●");
 				else if (board.pos[record[i][0]][record[i][1]].state == 2)
 					printf("○");
+				gotoxy(0, 20);
+				printf(" %s %d번 수, Weight : %f", (board.pos[record[i][0]][record[i][1]].state == 1) ? ("흑") : ("백"),
+					i + 1, board.pos[record[i][0]][record[i][1]].weight);
 				getch();
 			}
 		}
